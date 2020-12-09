@@ -5,8 +5,8 @@ var current = now.format("MM DD YYYY");
 //set date
 $("currentDay").text("Today's Date: " + current);
 
-$(document).read(function(){
-//for loop with local storage displays
+$(document).ready(function() {
+//for local storage
     hourArr = $('.hour').toArray();
     for (i = 0; i < hourArr.length; i++) {
         $(hourArr[i]).siblings('textarea').text(localStorage.getItem($(hourArr[i]).attr('data-time')));
@@ -14,7 +14,7 @@ $(document).read(function(){
 });
 
 // For loop to print rows with timeblocks, taskblocks, and save buttons
-for (i = 0; i < 10; i++) {
+for (i = 0; i < 9; i++) {
     //row in container
     var row = $('<div>').addClass('row');
     //time block
@@ -32,7 +32,7 @@ for (i = 0; i < 10; i++) {
     //after the timeblock display the task block
     $(time).after(task);
     //after the taskblock display the save button
-    $(taskBlock).after(saveButton);
+    $(task).after(saveButton);
 
         // if else statement to determine the color of the row
     //now statement red
