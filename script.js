@@ -35,20 +35,20 @@ for (i = 0; i < 9; i++) {
     //after the taskblock display the save button
     $(taskBlock).after(saveButton);
 
-        //if the time is the same as the time on the timeblock, display task block as red
-        if (now.isSame(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
-            $(taskBlock).addClass('present');
-            //if the time is in the future, display green
-        } else if (now.isBefore(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
-            $(taskBlock).addClass('future');
-            //if the time is in the past, display grey
-        } else if (now.isAfter(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
-            $(taskBlock).addClass('past');
-        }
+        // if else statement to determine the color of the row
+    //if the time is the same as the time on the timeblock, display task block as red
+    if (now.isSame(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
+        $(taskBlock).addClass('present');
+        //if the time is in the future, display green
+    } else if (now.isBefore(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
+        $(taskBlock).addClass('future');
+        //if the time is in the past, display grey
+    } else if (now.isAfter(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
+        $(taskBlock).addClass('past');
     }
-    
-    // Save click event to store data in local storage
-    $('.saveBtn').on('click', function() {
-    
-        localStorage.setItem($(this).siblings('div.hour').attr('data-time'), $(this).siblings('textarea').val())
-    });
+}
+// Save click event to store data in local storage
+$('.saveBtn').on('click', function() {
+
+    localStorage.setItem($(this).siblings('div.hour').attr('data-time'), $(this).siblings('textarea').val())
+});
