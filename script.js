@@ -14,37 +14,36 @@ $(document).read(function(){
 });
 
 // For loop to print rows with timeblocks, taskblocks, and save buttons
-for (i = 0; i < 9; i++) {
-    //create a variable for the row
-    var rowBlock = $('<div>').addClass('row');
-    //create a variable for the time block
-    var timeBlock = $('<div>').addClass('hour col-md-2').text(moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
-    timeBlock.attr('data-time', moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
-    //create a variable for the taskblock
-    var taskBlock = $('<textarea>').addClass('col-md-9');
-    //create a variable for the save block
+for (i = 0; i < 10; i++) {
+    //row in container
+    var row = $('<div>').addClass('row');
+    //time block
+    var time = $('<div>').addClass('hour col-md-2').text(moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
+    time.attr('data-time', moment('9:00 AM', 'hh:mm A').add(i, 'hours').format('hA'));
+    //task block
+    var task = $('<textarea>').addClass('col-md-9');
+    //save button
     var saveButton = $('<button>').addClass('saveBtn col-md-1').html('<i class="fas fa-save"></i>');
 
-    // Placing content created above into the DOM in the right order.
     //append the container with the row
-    $('.container').append(rowBlock);
+    $('.container').append(row);
     //append the row with the time block
-    $(rowBlock).append(timeBlock);
+    $(row).append(time);
     //after the timeblock display the task block
-    $(timeBlock).after(taskBlock);
+    $(time).after(task);
     //after the taskblock display the save button
     $(taskBlock).after(saveButton);
 
         // if else statement to determine the color of the row
-    //if the time is the same as the time on the timeblock, display task block as red
+    //now statement red
     if (now.isSame(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
-        $(taskBlock).addClass('present');
-        //if the time is in the future, display green
+        $(task).addClass('present');
+        //future green
     } else if (now.isBefore(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
-        $(taskBlock).addClass('future');
-        //if the time is in the past, display grey
+        $(task).addClass('future');
+        //past grey
     } else if (now.isAfter(moment('9:00 AM', 'hh:mm A').add(i, 'hours'), 'hour')) {
-        $(taskBlock).addClass('past');
+        $(task).addClass('past');
     }
 }
 // Save click event to store data in local storage
